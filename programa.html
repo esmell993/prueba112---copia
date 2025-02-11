@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+    <form>
+<label>Ingresa el nombre de la primera persona</label>
+<input type="text" name="name1" id="name1">
+<br>
+<label>Ingresa el nombre de la segunda persona</label>
+<input type="text" name="name2" id="name2">
+<br>
+<label>Ingresa la edad de la primera persona</label>
+<input type="number" name="valor" id="valor">
+<br>
+<label>Ingresa la edad de la segunda persona</label>
+<input type="number" name="valor2" id="valor2">
+<br>
+<input type="submit" value="dale" onclick="validad()">
+
+    </form>
+</center>
+    <script>
+        
+        function validad()
+        {
+            var valor=document.getElementById("valor").value;
+            var valor2=document.getElementById("valor2").value;
+            var name1=document.getElementById("name1").value;
+            var name2=document.getElementById("name2").value;
+            if(valor>valor2)
+      {
+    window.alert("Hola"+name1+"Tienes"+valor+"años, y eres mayor que"+name2+"que tiene"+valor2+"años");
+}else if(valor == valor2){
+
+    window.alert("Hola"+name1+"Tienes"+valor+"años, y tiene la misma edad que"+name2+"que tiene"+valor2+"años");
+}else{
+    window.alert("Hola"+name2+"Tienes"+valor2+"años, y eres mayor que"+name1+"que tiene"+valor+"años");
+}
+}
+  </script>  
+</body>
+</html>

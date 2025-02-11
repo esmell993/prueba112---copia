@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendario por Mes</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px; /* Ajuste para mover el contenido hacia abajo */
+    }
+    h1 {
+        color: #333;
+    }
+    #calendario {
+        border-collapse: collapse;
+        margin: auto;
+    }
+    #calendario th,
+    #calendario td {
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+    header {
+        background-color: #001e44;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+    }
+    header h1 {
+            margin: 10px 0;
+            color: aliceblue;
+        }
+        div{
+            border-radius: 0;
+            border: solid;
+            background-color: bisque;
+            width: 500px;
+            height: 500px;
+        }
+        input{
+            width: 100%;
+            height: 100%;
+        }
+</style>
+</head>
+<body>
+
+<header>
+    <h1 id="titulo">Calendario por Mes Ana Esmell</h1>
+</header>
+<br>
+<br>
+<label for="mes">Seleccione un mes:</label>
+<select id="mes">
+    <option hidden selected> Escoge los meses</option>
+    <option value="1">Enero</option>
+    <option value="2">Febrero</option>
+    <option value="3">Marzo</option>
+    <option value="4">Abril</option>
+    <option value="5">Mayo</option>
+    <option value="6">Junio</option>
+    <option value="7">Julio</option>
+    <option value="8">Agosto</option>
+    <option value="9">Septiembre</option>
+    <option value="10">Octubre</option>
+    <option value="11">Noviembre</option>
+    <option value="12">Diciembre</option>
+</select>
+<div>
+<table id="calendario">
+    <thead>
+        <tr>
+            <th>Lun</th>
+            <th>Mar</th>
+            <th>Mié</th>
+            <th>Jue</th>
+            <th>Vie</th>
+            <th>Sáb</th>
+            <th>Dom</th>
+        </tr>
+    </div>
+    </thead>
+    <tbody id="calendario-body">
+        <!-- Aquí se generará el calendario -->
+    </tbody>
+</table>
+
+<script>
+    document.getElementById('mes').addEventListener('change', function() {
+        var mesSeleccionado = parseInt(this.value);
+        generarCalendario(mesSeleccionado);
+    });
+
+    function generarCalendario(mes) {
+        var diasEnMes = new Date(new Date().getFullYear(), mes, 0).getDate();
+        var primerDia = new Date(new Date().getFullYear(), mes - 1, 1).getDay();
+        var calendarioBody = document.getElementById('calendario-body');
+        calendarioBody.innerHTML = '';
+
+        var fila = document.createElement('tr');
+        for (var i = 0; i < primerDia; i++) {
+            fila.appendChild(document.createElement('td'));
+        }
+
+        for (var dia = 1; dia <= diasEnMes; dia++) {
+            if (fila.childElementCount == 7) {
+                calendarioBody.appendChild(fila);
+                fila = document.createElement('tr');
+            }
+            var celda = document.createElement('td');
+            celda.textContent = dia;
+            fila.appendChild(celda);
+        }
+
+        if (fila.childElementCount > 0) {
+            calendarioBody.appendChild(fila);
+        }
+
+        var nombreMes = obtenerNombreMes(mes);
+        document.getElementById('titulo').textContent = "Calendario de " + nombreMes;
+    }
+
+    function obtenerNombreMes(mes) {
+        switch (mes) {
+            case 1: return 'Enero';
+            case 2: return 'Febrero';
+            case 3: return 'Marzo';
+            case 4: return 'Abril';
+            case 5: return 'Mayo';
+            case 6: return 'Junio';
+            case 7: return 'Julio';
+            case 8: return 'Agosto';
+            case 9: return 'Septiembre';
+            case 10: return 'Octubre';
+            case 11: return 'Noviembre';
+            case 12: return 'Diciembre';
+           
+        }
+    }
+</script>
+
+</body>
+</html>
