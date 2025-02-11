@@ -1,5 +1,5 @@
 <?php
-include "index.html";
+
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -17,7 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
     $result = $stmt->get_result();
-
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $tipo_usuario = $row['tipo_user'];
